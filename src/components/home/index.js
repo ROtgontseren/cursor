@@ -29,8 +29,8 @@ export default function Home() {
       ></iframe>
 
       <div className="z-10 flex justify-center items-end h-screen w-screen">
-        <div className="absolute top-50% left-0 z-10 w-full flex flex-col items-center pt-6">
-          <nav className="flex flex-wrap justify-center items-center gap-2 mt-4">
+        <div className="absolute top-[42%] right-[10%] z-10 w-full flex flex-col items-center">
+          <nav className="flex justify-center items-center gap-2 mt-4">
             <div className="dropdown dropdown-top">
               <label tabIndex={0} className="btn btn-outline btn-primary">A1 - A15</label>
               <ul tabIndex={0} className="dropdown-content menu bg-base-100 text-black text-center rounded-box z-10 w-72 h-40 p-2 shadow-sm overflow-y-auto">
