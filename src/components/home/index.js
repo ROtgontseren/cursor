@@ -58,17 +58,16 @@ export default function Home() {
               </ul>
             </div>
 
-            <button className="btn btn-sm mb-4" onClick={handleLocationClick}>Байршил</button>
+            <button className="btn btn-sm mb-4 mx-1" onClick={handleLocationClick}>Байршил</button>
           </nav>
 
           {!showAddress && <section>
             <div className="w-full mx-auto rounded-xl overflow-hidden p-4">
               {!play ? (
-                 <div className="mt-10 w-96 h-5">
-                 📍 Байршлын мэдээлэл энд орно...
-               </div>
+                <div className="mt-10 w-96 h-36">
+                </div>
               ) : (
-                <div className="relative w-96 h-48">
+                <div className="relative w-96 h-48 p-0 m-0">
                   <VideoSwiper swiperRef={swiperRef} />
                 </div>
               )}
