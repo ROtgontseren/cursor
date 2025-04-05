@@ -6,20 +6,16 @@ import VideoSwiper from './swiper';
 export default function Home() {
   const swiperRef = useRef(null);
   const [play, setPlay] = useState(false);
-  const [selectedVideo, setSelectedVideo] = useState(null); // State to track the selected video
-  const [showAddress, setShowAddress] = useState(false); // State to track address visibility
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [showAddress, setShowAddress] = useState(false);
 
   const handleVideoSelection = (videoId) => {
-    setSelectedVideo(videoId); // Set the selected video
-    setPlay(true); // Set play to true when a video is selected
-    setShowAddress(false); // Hide the address when a video is selected
-    swiperRef.current?.slideTo(videoId - 1); // Navigate to the corresponding slide
+    setSelectedVideo(videoId);
+    setPlay(true);
+    setShowAddress(false);
+    swiperRef.current?.slideTo(videoId - 1);
   };
 
-  const handleLocationClick = () => {
-    setPlay(false); // Stop video playback
-    setShowAddress(true); // Show the address section
-  };
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
@@ -33,34 +29,40 @@ export default function Home() {
       ></iframe>
 
       <div className="z-10 flex justify-center items-end h-screen w-screen">
-        <div className="d-flex flex-col justify-center items-center">
-          <nav className='d-flex justify-center items-center'>
+        <div className="absolute top-50% left-0 z-10 w-full flex flex-col items-center pt-6">
+          <nav className="flex flex-wrap justify-center items-center gap-2 mt-4">
             <div className="dropdown dropdown-top">
-              <label tabIndex={0} className="btn btn-outline btn-primary m-1">A1 - A15</label>
-              <ul tabIndex="0" className="dropdown-content menu bg-base-100 text-black text-center rounded-box z-1 w-72 h-40 p-2 shadow-sm">
+              <label tabIndex={0} className="btn btn-outline btn-primary">A1 - A15</label>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-100 text-black text-center rounded-box z-10 w-72 h-40 p-2 shadow-sm overflow-y-auto">
                 {[...Array(15).keys()].map((i) => (
-                  <h5 key={`A${i + 1}`}>
+                  <li key={`A${i + 1}`}>
                     <a onClick={() => handleVideoSelection(i + 1)}>A{i + 1}</a>
-                  </h5>
-                ))}
-              </ul>
-            </div>
-            <div className="dropdown dropdown-top">
-              <label tabIndex={0} className="btn btn-outline btn-primary m-1">B1 - B6</label>
-              <ul tabIndex="0" className="dropdown-content menu bg-base-100 text-black text-center rounded-box z-1 w-24 p-2 shadow-sm">
-                {[...Array(6).keys()].map((i) => (
-                  <h5 key={`B${i + 1}`}>
-                    <a onClick={() => handleVideoSelection(i + 16)}>B{i + 1}</a>
-                  </h5>
+                  </li>
                 ))}
               </ul>
             </div>
 
-            <button className="btn btn-outline btn-primary m-1">Байршил</button>
+            <div className="dropdown dropdown-top">
+              <label tabIndex={0} className="btn btn-outline btn-primary">B1 - B6</label>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-100 text-black text-center rounded-box z-10 w-24 p-2 shadow-sm">
+                {[...Array(6).keys()].map((i) => (
+                  <li key={`B${i + 1}`}>
+                    <a onClick={() => handleVideoSelection(i + 16)}>B{i + 1}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <button
+              className="btn btn-outline btn-primary"
+            >
+              Байршил
+            </button>
           </nav>
 
+
           {!showAddress &&
-            <section className="mt-10 mb-10 h-[40vh] w-[80vh] flex justify-center items-center">
+            <section className="mt-10 mb-10 h-[40vh] w-[60vh] flex justify-center items-center">
               <div className="w-full max-w-5xl h-full rounded-3xl overflow-hidden">
                 {!play ? (
                   <div className="w-full h-full bg-gray-200" />
