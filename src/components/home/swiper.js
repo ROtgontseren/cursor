@@ -1,39 +1,57 @@
-"use client"
-import { useRef, useEffect, useState } from 'react';
+"use client";
+
+import { useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import SwiperCore, { Navigation } from 'swiper';
-
-SwiperCore.use([Navigation]);
 
 const videos = [
-  'https://www.youtube.com/embed/R3S58vN9GkU?enablejsapi=1',
-  'https://www.youtube.com/embed/X_7P4YmkfY8?enablejsapi=1',
-  'https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1',
-  'https://www.youtube.com/embed/kXYiU_JCYtU?enablejsapi=1',
+  "/videos/a/a1.mp4",
+  "/videos/a/a2.mp4",
+  "/videos/a/a3.mp4",
+  "/videos/a/a4.mp4",
+  "/videos/a/a5.mp4",
+  "/videos/a/a6.mp4",
+  "/videos/a/a7.mp4",
+  "/videos/a/a8.mp4",
+  "/videos/a/a9.mp4",
+  "/videos/a/a10.mp4",
+  "/videos/a/a11.mp4",
+  "/videos/a/a12.mp4",
+  "/videos/a/a13.mp4",
+  "/videos/a/a14.mp4",
+  "/videos/a/a15.mp4"
 ];
 
-export default function VideoSwiper({ swiperRef }) {
-  const iframeRefs = useRef([]);
+const Bvideos = [
+  "/videos/b/b1.mp4",
+  "/videos/b/b2.mp4",
+  "/videos/b/b3.mp4",
+  "/videos/b/b4.mp4",
+  "/videos/b/b5.mp4",
+  "/videos/b/b6.mp4",
+];
 
-  // Pause all videos
-  const pauseAll = () => {
-    iframeRefs.current.forEach((iframe) => {
-      iframe?.contentWindow?.postMessage(
-        '{"event":"command","func":"pauseVideo","args":""}',
-        '*'
-      );
-    });
-  };
+const locationVideo = [
+  "/videos/location/location.mp4",
+];
 
-  // When slide changes
+const allVideos = [...videos, ...Bvideos, ...locationVideo];
+
+export default function VideoSwiper({ swiperRef, selectedVideo }) {
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    if (selectedVideo !== null && swiperRef.current) {
+      swiperRef.current.slideTo(selectedVideo - 1); // Adjust slide based on selected video
+    }
+  }, [selectedVideo, swiperRef]);
+
   const handleSlideChange = (swiper) => {
-    pauseAll();
-    const currentIframe = iframeRefs.current[swiper.activeIndex];
-    currentIframe?.contentWindow?.postMessage(
-      '{"event":"command","func":"playVideo","args":""}',
-      '*'
-    );
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach((vid) => vid.pause()); // Pause all videos
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const videoEl = activeSlide.querySelector('video');
+    videoEl?.play(); // Play the active video
   };
 
   return (
@@ -45,16 +63,17 @@ export default function VideoSwiper({ swiperRef }) {
       spaceBetween={30}
       slidesPerView={1}
     >
-      {videos.map((url, index) => (
+      {allVideos.map((url, index) => (
         <SwiperSlide key={index}>
           <div className="w-full aspect-video">
-            <iframe
-              ref={(el) => (iframeRefs.current[index] = el)}
+            <video
+              ref={(el) => (videoRefs.current[index] = el)}
               className="w-full h-full"
               src={url}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              title={`video-${index}`}
+              controls
+              autoPlay
+              muted
+              loop
             />
           </div>
         </SwiperSlide>

@@ -5,17 +5,19 @@ import VideoSwiper from './swiper';
 
 export default function Home() {
   const swiperRef = useRef(null);
-  const [play, setPlay] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [showAddress, setShowAddress] = useState(false);
+  const [showLocationVideo, setShowLocationVideo] = useState(false); // State for showing location video
 
   const handleVideoSelection = (videoId) => {
     setSelectedVideo(videoId);
-    setPlay(true);
-    setShowAddress(false);
-    swiperRef.current?.slideTo(videoId - 1);
+    setShowLocationVideo(false); // Hide location video when a normal video is selected
+    swiperRef.current?.slideTo(videoId - 1);  // Slide to the selected video
   };
 
+  const handleLocationVideoClick = () => {
+    setShowLocationVideo(true); // Show location video when button is clicked
+    setSelectedVideo(null); // Clear the selected video
+  };
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
@@ -55,25 +57,32 @@ export default function Home() {
 
             <button
               className="btn"
+              onClick={handleLocationVideoClick} // Handle click to show location video
             >
               Байршил
             </button>
           </nav>
 
-
-          {!showAddress &&
-            <section className="mt-10 mb-10 h-[40vh] w-[60vh] flex justify-center items-center">
-              <div className="w-full max-w-5xl h-full rounded-3xl overflow-hidden">
-                {!play ? (
-                  <div />
-                ) : (
-                  <div className="relative w-full h-full">
-                    <VideoSwiper swiperRef={swiperRef} />
-                  </div>
-                )}
-              </div>
-            </section>
-          }
+          <section className="mt-10 mb-10 h-[40vh] w-[60vh] flex justify-center items-center">
+            <div className="w-full max-w-5xl h-full rounded-3xl overflow-hidden">
+              {showLocationVideo ? (
+                <div className="relative w-full h-full">
+                  <video
+                    className="w-full h-full"
+                    src="/videos/location/location.mp4"
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                  />
+                </div>
+              ) : (
+                <div className="relative w-full h-full">
+                  <VideoSwiper swiperRef={swiperRef} selectedVideo={selectedVideo} />
+                </div>
+              )}
+            </div>
+          </section>
         </div>
       </div>
     </div>
