@@ -33,7 +33,7 @@ export default function Home() {
           <nav className="flex justify-center items-center gap-2 mt-4">
             <div className="dropdown dropdown-top">
               <label tabIndex={0} className="btn">A1 - A15</label>
-              <ul tabIndex={0} className="dropdown-content menu text-center bg-white rounded-box z-10 w-72 h-40 p-2 shadow-sm overflow-y-auto">
+              <ul tabIndex={0} className="dropdown-content menu text-center bg-white mb-2 rounded-box z-10 w-72 h-40 p-2 shadow-sm overflow-y-auto">
                 {[...Array(15).keys()].map((i) => (
                   <li key={`A${i + 1}`}>
                     <a onClick={() => handleVideoSelection(i + 1)}>A{i + 1}</a>
@@ -44,7 +44,7 @@ export default function Home() {
 
             <div className="dropdown dropdown-top">
               <label tabIndex={0} className="btn">B1 - B6</label>
-              <ul tabIndex={0} className="dropdown-content menu text-center bg-white rounded-box z-10 w-24 p-2 shadow-sm">
+              <ul tabIndex={0} className="dropdown-content menu text-center mb-2 bg-white rounded-box z-10 w-24 p-2 shadow-sm">
                 {[...Array(6).keys()].map((i) => (
                   <li key={`B${i + 1}`}>
                     <a onClick={() => handleVideoSelection(i + 16)}>B{i + 1}</a>
