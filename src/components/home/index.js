@@ -64,7 +64,9 @@ export default function Home() {
           {!showAddress && <section>
             <div className="w-full mx-auto rounded-xl overflow-hidden p-4">
               {!play ? (
-                <div />
+                 <div className="mt-10 w-96 h-5">
+                 📍 Байршлын мэдээлэл энд орно...
+               </div>
               ) : (
                 <div className="relative w-96 h-48">
                   <VideoSwiper swiperRef={swiperRef} />
