@@ -6,17 +6,24 @@ import VideoSwiper from './swiper';
 export default function Home() {
   const swiperRef = useRef(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [showLocationVideo, setShowLocationVideo] = useState(false); // State for showing location video
+  const [showLocationVideo, setShowLocationVideo] = useState(false);
 
   const handleVideoSelection = (videoId) => {
     setSelectedVideo(videoId);
-    setShowLocationVideo(false); // Hide location video when a normal video is selected
-    swiperRef.current?.slideTo(videoId - 1);  // Slide to the selected video
+    setShowLocationVideo(false);
+    swiperRef.current?.slideTo(videoId - 1);
   };
 
   const handleLocationVideoClick = () => {
-    setShowLocationVideo(true); // Show location video when button is clicked
-    setSelectedVideo(null); // Clear the selected video
+    setShowLocationVideo(true);
+    setSelectedVideo(null);
+  };
+
+  const handlePauseAllVideos = () => {
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach((video) => {
+      video.pause();
+    });
   };
 
   return (
@@ -57,7 +64,7 @@ export default function Home() {
 
             <button
               className="btn"
-              onClick={handleLocationVideoClick} // Handle click to show location video
+              onClick={handleLocationVideoClick}
             >
               Байршил
             </button>
@@ -76,9 +83,13 @@ export default function Home() {
                     loop
                   />
                 </div>
-              ) : (
+              ) : selectedVideo !== null ? (
                 <div className="relative w-full h-full">
                   <VideoSwiper swiperRef={swiperRef} selectedVideo={selectedVideo} />
+                </div>
+              ) : (
+                <div className="w-full h-full flex justify-center items-center">
+                  <p></p>
                 </div>
               )}
             </div>
