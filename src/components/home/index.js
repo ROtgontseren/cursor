@@ -65,7 +65,7 @@ export default function Home() {
             <section className="mt-10 mb-10 h-[40vh] w-[60vh] flex justify-center items-center">
               <div className="w-full max-w-5xl h-full rounded-3xl overflow-hidden">
                 {!play ? (
-                  <div className="w-full h-full bg-gray-200" />
+                  <div />
                 ) : (
                   <div className="relative w-full h-full">
                     <VideoSwiper swiperRef={swiperRef} />
