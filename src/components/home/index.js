@@ -32,13 +32,11 @@ export default function Home() {
         allowFullScreen
       ></iframe>
 
-      <div className="relative z-10 flex items-center justify-center h-full w-full pb-20 pr-60">
-        {/* Centered Container */}
+      <div className="relative z-10 flex items-center justify-center h-full w-full pb-20 pr-50 my-auto">
         <div className="text-white text-center">
-          {/* Navigation Buttons */}
           <nav className="mb-8">
             <div className="dropdown dropdown-top mb-4">
-              <label tabIndex={0} className="btn btn-sm m-1">A1 - A15</label>
+              <label tabIndex={0} className="btn btn-outline btn-primary m-1">A1 - A15</label>
               <ul tabIndex="0" className="dropdown-content menu bg-base-100 text-black text-center rounded-box z-1 w-72 h-40 p-2 shadow-sm">
                 {[...Array(15).keys()].map((i) => (
                   <li key={`A${i + 1}`}>
@@ -48,7 +46,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="dropdown dropdown-top mb-4">
-              <label tabIndex={0} className="btn btn-sm m-1">B1 - B6</label>
+              <label tabIndex={0} className="btn btn-outline btn-primary m-1">B1 - B6</label>
               <ul tabIndex="0" className="dropdown-content menu bg-base-100 text-black text-center rounded-box z-1 w-24 p-2 shadow-sm">
                 {[...Array(6).keys()].map((i) => (
                   <li key={`B${i + 1}`}>
@@ -58,7 +56,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <button className="btn btn-sm mb-4 mx-1" onClick={handleLocationClick}>Байршил</button>
+            <button className="btn btn-outline btn-primary mb-4 mx-1" onClick={handleLocationClick}>Байршил</button>
           </nav>
 
           {!showAddress && <section>
