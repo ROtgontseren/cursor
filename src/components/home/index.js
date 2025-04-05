@@ -71,7 +71,7 @@ export default function Home() {
           </nav>
 
           <section className="mt-10 mb-10 h-[40vh] w-[60vh] flex justify-center items-center">
-            <div className="w-full max-w-5xl h-full rounded-3xl overflow-hidden">
+            <div className="w-full max-w-5xl h-full overflow-hidden">
               {showLocationVideo ? (
                 <div className="relative w-full h-full">
                   <video
