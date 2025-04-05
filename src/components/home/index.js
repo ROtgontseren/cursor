@@ -32,7 +32,7 @@ export default function Home() {
         allowFullScreen
       ></iframe>
 
-      <div className="z-10 flex justify-center items-center h-screen w-screen">
+      <div className="z-10 flex justify-center items-end h-screen w-screen">
         <div className="d-flex flex-col justify-center items-center">
           <nav className='d-flex justify-center items-center'>
             <div className="dropdown dropdown-top">
@@ -59,18 +59,19 @@ export default function Home() {
             <button className="btn btn-outline btn-primary m-1">Байршил</button>
           </nav>
 
-          {!showAddress && <section className='mt-10'>
-            <div className="w-full h-full rounded-3xl overflow-hidden">
-              {!play ? (
-                <div className="w-96 h-36">
-                </div>
-              ) : (
-                <div className="relative w-96 h-48 p-0 m-0">
-                  <VideoSwiper swiperRef={swiperRef} />
-                </div>
-              )}
-            </div>
-          </section>}
+          {!showAddress &&
+            <section className="mt-10 mb-10 h-[40vh] w-[80vh] flex justify-center items-center">
+              <div className="w-full max-w-5xl h-full rounded-3xl overflow-hidden">
+                {!play ? (
+                  <div className="w-full h-full bg-gray-200" />
+                ) : (
+                  <div className="relative w-full h-full">
+                    <VideoSwiper swiperRef={swiperRef} />
+                  </div>
+                )}
+              </div>
+            </section>
+          }
         </div>
       </div>
     </div>
