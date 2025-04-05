@@ -64,7 +64,7 @@ export default function Home() {
           {!showAddress && <section>
             <div className="w-full mx-auto rounded-xl overflow-hidden p-4">
               {!play ? (
-                <div className="text-center text-gray-300 py-10">🎬 Видео сонгоно уу</div>
+                <div />
               ) : (
                 <div className="relative w-96 h-48">
                   <VideoSwiper swiperRef={swiperRef} />
