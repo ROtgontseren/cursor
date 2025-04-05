@@ -32,7 +32,7 @@ export default function Home() {
         allowFullScreen
       ></iframe>
 
-      <div className="relative z-10 flex items-end justify-center h-full w-full pb-20 pr-60">
+      <div className="relative z-10 flex items-center justify-center h-full w-full pb-20 pr-60">
         {/* Centered Container */}
         <div className="text-white text-center">
           {/* Navigation Buttons */}
